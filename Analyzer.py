@@ -21,6 +21,9 @@ def get_stock_analysis(file_path):
     # Convert stock data into CSV string format
     csv_data = CsvWriter.format_csv_string(headers, stock_data)
 
+    print("---------")
+    print(csv_data)
+    print("---------")
     prompt = f"""
     Analyze the following stock market data and provide insights in JSON format.
 
@@ -41,7 +44,8 @@ def get_stock_analysis(file_path):
     [
         {{
             "StockName": "Stock Name",
-            "Analysis": ["Observation 1", "Observation 2", ...]
+            "Analysis": ["Observation 1", "Observation 2", ...],
+            "Recommendation": "StrongBuy/Buy/Hold/Sell/StrongSell",
         }}
     ]
     ```

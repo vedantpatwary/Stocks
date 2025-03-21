@@ -23,7 +23,7 @@ class ScreenerController:
 
                 if name_tag and value_tag:
                     name = name_tag.get_text(strip=True)
-                    value = value_tag.get_text(strip=True)
+                    value = value_tag.get_text(strip=True).replace(",","")
                     ratios[name] = value
             return FinancialRatios(ratios)
         else:
