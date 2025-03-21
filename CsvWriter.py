@@ -1,5 +1,6 @@
 import csv
 import os
+import pandas as pd
 
 def save_financial_ratios_to_csv(stock_ratios_map, file_path):
     """
@@ -30,3 +31,17 @@ def save_financial_ratios_to_csv(stock_ratios_map, file_path):
             writer.writerow(row)
 
     print(f"CSV file saved at: {full_path}")
+
+def read_csv(file_path):
+    """Reads CSV file and returns stock data as a dictionary with headers dynamically detected."""
+    with open(file_path, "r", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        headers = reader.fieldnames  # Dynamically get headers
+        stock_data = [row for row in reader]  # Read all rows into a list
+    return headers, stock_data
+
+def format_csv_string(headers, stock_data):
+    """Converts stock data into a CSV-formatted string for efficient token usage."""
+    csv_string = ",".join(headers) + "\n"
+    csv_string += "\n".join([",".join(row[h] for h in headers) for row in stock_data])
+    return csv_string

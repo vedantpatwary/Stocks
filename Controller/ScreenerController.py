@@ -6,6 +6,7 @@ from Model.FinancialRatios import FinancialRatios
 class ScreenerController:
     def __init__(self):
         pass
+    
     def get_quick_ratios(self, company_id, cookies_dict):
         api_url = f"https://www.screener.in/api/company/{company_id}/quick_ratios/"
         headers = Constants.headers

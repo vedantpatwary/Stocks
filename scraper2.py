@@ -4,20 +4,29 @@ import Auth.chromeDriver as chromeDriver
 import Constants
 import CsvWriter
 from Controller.ScreenerController import ScreenerController
+import Analyzer
 
-api_url = "https://www.screener.in/api/company/6596661/quick_ratios/"
+file_path = "/Users/vedantpatwary/Desktop/PersonalProjects/Stocks/results/quick_ratios.csv"
 
-headers = Constants.headers
+def getLatestData():
+    api_url = "https://www.screener.in/api/company/6596661/quick_ratios/"
 
-cookies_dict = chromeDriver.getCookies()
+    headers = Constants.headers
 
-controller = ScreenerController()
-responseMap = {}
-for stock_name, company_id in Constants.stock_to_company_id.items():
-    responseMap[stock_name] = controller.get_quick_ratios(company_id, cookies_dict)
-# Loop through the stock_to_company_id dictionary
-financial = controller.get_quick_ratios(6596661, cookies_dict)
-print(financial)
+    cookies_dict = chromeDriver.getCookies()
 
-CsvWriter.save_financial_ratios_to_csv(responseMap,"/Users/vedantpatwary/Desktop/PersonalProjects/Stocks/results/quick_ratios.csv")
+    controller = ScreenerController()
+    responseMap = {}
+    for stock_name, company_id in Constants.stock_to_company_id.items():
+        responseMap[stock_name] = controller.get_quick_ratios(company_id, cookies_dict)
+    # Loop through the stock_to_company_id dictionary
+    financial = controller.get_quick_ratios(6596661, cookies_dict).to_dict()
+    # print(financial)
+    CsvWriter.save_financial_ratios_to_csv(responseMap,file_path)
 
+user_input = input("Pull latest data from screener? (y/n): ")
+if(user_input.lower() == "y"):
+    getLatestData()
+
+analysis = Analyzer.get_stock_analysis(file_path)
+print(analysis)
