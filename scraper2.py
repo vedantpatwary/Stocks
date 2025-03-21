@@ -19,9 +19,6 @@ def getLatestData():
     responseMap = {}
     for stock_name, company_id in Constants.stock_to_company_id.items():
         responseMap[stock_name] = controller.get_quick_ratios(company_id, cookies_dict)
-    # Loop through the stock_to_company_id dictionary
-    financial = controller.get_quick_ratios(6596661, cookies_dict).to_dict()
-    # print(financial)
     CsvWriter.save_financial_ratios_to_csv(responseMap,file_path)
 
 user_input = input("Pull latest data from screener? (y/n): ")
