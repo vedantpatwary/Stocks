@@ -26,7 +26,6 @@ def get_stock_analysis(file_path):
     print("---------")
     prompt = f"""
     Analyze the following stock market data and provide insights in JSON format.
-
     For each stock, highlight:
     - Profit growth
     - Debt level

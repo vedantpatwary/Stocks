@@ -17,6 +17,8 @@ class FinancialRatios:
         self.from_52w_high = data.get("From 52w high")
         self.qoq_profits = data.get("QoQ Profits")
         self.qtr_profit_var = data.get("Qtr Profit Var")
+        self.sales_growth_1y = data.get("Sales growth")
+        self.profit_var_3yrs = data.get("Profit Var 3Yrs")
 
     def to_dict(self):
         """Convert the object to a JSON-serializable dictionary."""
