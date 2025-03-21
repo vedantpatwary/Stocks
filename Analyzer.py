@@ -25,13 +25,15 @@ def get_stock_analysis(file_path):
     print(csv_data)
     print("---------")
     prompt = f"""
-    Analyze the following stock market data and provide insights in JSON format.
+    Analyze the following stock market data and provide insights in JSON format. Take time to think. Write the Pros and Cons separately backing by data.
     For each stock, highlight:
     - Profit growth
     - Debt level
     - Valuation (P/E ratio, P/B ratio)
     - Promoter holding
     - Key observations.
+    - Sales Growth QoQ, 1Yr, 3 Yrs, 5 Yrs with all 3 numbers mentioned. 
+    - Profit Growth QoQ, 1Yr, 3 Yrs, 5 Yrs with all 3 numbers mentioned. 
 
     ## Stock Data (CSV Format)
     ```
